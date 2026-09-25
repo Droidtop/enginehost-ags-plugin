@@ -1,0 +1,38 @@
+{
+  "bundleId": "dev.enginehost.ags.3.v1",
+  "engine": "ags",
+  "pluginVersion": "0.1",
+  "apiVersion": 1,
+  "entrypoint": "uk.co.adventuregamestudio.agsplayer.EngineHostAgsActivity",
+  "runtimeTransport": "android-activity",
+  "origin": "https://github.com/droidtop/enginehost-ags-plugin",
+  "dexFiles": [
+    "classes.dex"
+  ],
+  "resourceApks": [
+    "runtime.apk"
+  ],
+  "capabilities": [
+    {
+      "id": "ags-3-standard-v1",
+      "engineContext": "standard",
+      "runtimeVersion": "3.6.3.15",
+      "supportedRanges": [
+        {
+          "min": "2.50",
+          "max": "3.6.3.15"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "upstream": "https://github.com/adventuregamestudio/ags",
+    "revision": "plugin/3.6.3.15"
+  },
+  "licenses": [
+    "Artistic-2.0 (Adventure Game Studio)",
+    "MIT (the Enginehost wrapper)",
+    "the notices of the libraries the AGS runtime builds in (SDL2, SDL_sound, Ogg, Vorbis, Theora)"
+  ],
+  "notes": "Adventure Game Studio 3.6.3, the official engine and its Android port. Runs games compiled with the AGS editor from 2.50 to 3.6.3, the range this engine loads; AGS 4 games need their own line."
+}

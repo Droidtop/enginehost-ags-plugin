@@ -1,0 +1,14 @@
+{
+  "description": "Enginehost plugin implementation repository for Adventure Game Studio",
+  "engine": "ags",
+  "engineContexts": [
+    "standard"
+  ],
+  "formatVersion": 1,
+  "implementation": {
+    "id": "ags",
+    "name": "Adventure Game Studio",
+    "upstream": "https://github.com/adventuregamestudio/ags"
+  },
+  "origin": "https://github.com/droidtop/enginehost-ags-plugin"
+}
