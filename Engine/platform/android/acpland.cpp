@@ -67,6 +67,7 @@ MobileSetup AGSAndroid::_msetup;
 String android_base_directory = ".";
 String android_app_directory = ".";
 String android_save_directory = "";
+String android_shared_directory = "";
 
 // NOTE: the JVM can't use JNI outside here due to C++ name mangling
 extern "C" 
@@ -436,6 +437,18 @@ void AGSAndroid::ShutdownCDPlayer() {
 
 static void MakeGameSaveDirectory()
 {
+  // Enginehost: on the desktop platforms AGS saves in the system's saved-games
+  // folder, under the game's own saveGameFolderName, and keeps shared data in
+  // an all-users folder beside it (the XDG platforms: $XDG_DATA_HOME/ags and
+  // ags-common). A runtime hosted by Enginehost is handed the folder that
+  // system location means; the game still names its own subfolder in it.
+  const char *enginehost_root = getenv("ENGINEHOST_AGS_SAVE_ROOT");
+  if (enginehost_root != nullptr && enginehost_root[0] != 0)
+  {
+    android_save_directory = enginehost_root;
+    android_shared_directory = Path::ConcatPaths(android_save_directory, "ags-common");
+    return;
+  }
   // Test the app dir for write access, if failed then switch to "base dir"
   if (File::TestCreateFile("./tmptest.tmp"))
     android_save_directory = ".";
@@ -447,6 +460,8 @@ FSLocation AGSAndroid::GetAllUsersDataDirectory()
 {
   if (android_save_directory.IsEmpty())
     MakeGameSaveDirectory();
+  if (!android_shared_directory.IsEmpty())
+    return FSLocation(android_shared_directory);
   return FSLocation(android_save_directory);
 }
 

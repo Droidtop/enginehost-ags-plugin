@@ -12,7 +12,7 @@ android {
     namespace "uk.co.adventuregamestudio.agsplayer"
 
     defaultConfig {
-        applicationId "uk.co.adventuregamestudio.agsplayer"
+        applicationId "dev.enginehost.plugin.ags.v3_6.slot1"
         minSdkVersion 19
         targetSdkVersion 33
         versionCode 1
@@ -38,6 +38,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+    androidResources {
+        additionalParameters += ["--package-id", "0x80", "--allow-reserved-package-id"]
     }
     namespace 'uk.co.adventuregamestudio.agsplayer'
 }
