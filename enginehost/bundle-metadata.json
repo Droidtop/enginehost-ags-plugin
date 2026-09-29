@@ -1,7 +1,7 @@
 {
   "bundleId": "dev.enginehost.ags.3.v1",
   "engine": "ags",
-  "pluginVersion": "0.1",
+  "pluginVersion": "0.9.0",
   "apiVersion": 1,
   "entrypoint": "uk.co.adventuregamestudio.agsplayer.EngineHostAgsActivity",
   "runtimeTransport": "android-activity",
