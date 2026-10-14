@@ -1,0 +1,8 @@
+{
+  "upstream": {
+    "repo": "adventuregamestudio/ags",
+    "ref": "v3.6.3.15",
+    "commit": "15a9b972d31e5a9c1820252b4c56622cab3fde12"
+  },
+  "version": "3.6.3.15"
+}
