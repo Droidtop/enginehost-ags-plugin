@@ -31,7 +31,7 @@
   },
   "licenses": [
     "Artistic-2.0 (Adventure Game Studio)",
-    "MIT (the Enginehost wrapper)",
+    "GPL-3.0 (the Enginehost wrapper and the combined bundle)",
     "the notices of the libraries the AGS runtime builds in (SDL2, SDL_sound, Ogg, Vorbis, Theora)"
   ],
   "notes": "Adventure Game Studio 3.6.3, the official engine and its Android port. Runs games compiled with the AGS editor from 2.50 to 3.6.3, the range this engine loads; AGS 4 games need their own line."

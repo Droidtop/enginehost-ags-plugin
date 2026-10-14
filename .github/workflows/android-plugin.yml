@@ -94,7 +94,7 @@ jobs:
           DEXES
           cp enginehost/LICENSES.md build/unsigned/payload/LICENSES.md
           cp License.txt build/unsigned/payload/LICENSE.ags.txt
-          cp LICENSE.enginehost build/unsigned/payload/LICENSE.enginehost.txt
+          cp LICENSE build/unsigned/payload/LICENSE.enginehost.txt
           # A tar keeps the file modes the manifest signs; an artifact would not.
           tar -cf build/unsigned.tar -C build/unsigned payload bundle-metadata.json
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
