@@ -1,6 +1,6 @@
 /*
  * Enginehost integration for the Adventure Game Studio Android runtime.
- * Copyright (c) 2026 the Enginehost contributors. MIT License; see LICENSE.
+ * Copyright (c) 2026 the Enginehost contributors. GPL-3.0; see LICENSE.
  */
 
 package uk.co.adventuregamestudio.agsplayer;
