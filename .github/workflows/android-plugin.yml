@@ -110,9 +110,9 @@ jobs:
     if: startsWith(github.ref, 'refs/heads/plugin/')
     permissions:
       contents: read
-    uses: Droidtop/enginehost/.github/workflows/sign-engine-bundle.yml@419594b25cc704175e71879120444423b231d6d6
+    uses: Droidtop/enginehost/.github/workflows/sign-engine-bundle.yml@48e288cbaf9c075156923e0be63b2dc2a796124c
     with:
-      tooling-sha: 419594b25cc704175e71879120444423b231d6d6
+      tooling-sha: 48e288cbaf9c075156923e0be63b2dc2a796124c
       unsigned-artifact: enginehost-ags-bundle-unsigned
       bundle: dev.enginehost.ags.3.v1.enginehost.tar.xz
       artifact-name: enginehost-ags-bundle
@@ -130,9 +130,9 @@ jobs:
     if: ${{ github.event_name == 'workflow_dispatch' && inputs.publish }}
     permissions:
       contents: write
-    uses: Droidtop/enginehost/.github/workflows/publish-engine-bundle.yml@419594b25cc704175e71879120444423b231d6d6
+    uses: Droidtop/enginehost/.github/workflows/publish-engine-bundle.yml@48e288cbaf9c075156923e0be63b2dc2a796124c
     with:
-      tooling-sha: 419594b25cc704175e71879120444423b231d6d6
+      tooling-sha: 48e288cbaf9c075156923e0be63b2dc2a796124c
       artifact-name: enginehost-ags-bundle
       channel: ${{ inputs.channel }}
       tag: ${{ inputs.tag }}
@@ -149,9 +149,9 @@ jobs:
     if: ${{ github.event_name == 'push' }}
     permissions:
       contents: write
-    uses: Droidtop/enginehost/.github/workflows/publish-engine-bundle.yml@419594b25cc704175e71879120444423b231d6d6
+    uses: Droidtop/enginehost/.github/workflows/publish-engine-bundle.yml@48e288cbaf9c075156923e0be63b2dc2a796124c
     with:
-      tooling-sha: 419594b25cc704175e71879120444423b231d6d6
+      tooling-sha: 48e288cbaf9c075156923e0be63b2dc2a796124c
       artifact-name: enginehost-ags-bundle
       channel: unstable
     secrets:
