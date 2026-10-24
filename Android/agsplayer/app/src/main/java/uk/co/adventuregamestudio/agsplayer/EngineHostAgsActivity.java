@@ -158,9 +158,12 @@ public final class EngineHostAgsActivity extends AGSRuntimeActivity {
         } catch (ErrnoException error) {
             return "Could not hand the save folder to AGS: " + error.getMessage();
         }
-        // The engine's own files (its global config and log) go to a folder of
-        // the runtime's, never into the game folder, which stays as shipped.
-        File own = new File(getFilesDir(), "enginehost/ags");
+        // The engine's own files (its global config and log) go to the save folder the
+        // person chose, never into the game folder, which stays as shipped. Enginehost
+        // makes an engine's private locations mean that folder (its rule for saves), and a
+        // locked-down runtime may not write Enginehost's own files: AGS stopped with
+        // "Could not create AGS's own folder .../files/enginehost/ags" (rig, #550, 2026-10-24).
+        File own = save != null && !save.isEmpty() ? new File(save, "ags-engine") : new File(getFilesDir(), "enginehost/ags");
         if (!own.isDirectory() && !own.mkdirs()) return "Could not create AGS's own folder " + own.getPath();
         intent.putExtra("filename", data.getPath());
         intent.putExtra("directory", own.getPath());
