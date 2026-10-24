@@ -1,0 +1,40 @@
+diff --git a/Android/library/runtime/src/main/java/org/libsdl/app/SDLActivity.java b/Android/library/runtime/src/main/java/org/libsdl/app/SDLActivity.java
+index 45a30e20fc969b0571061c41ee8a9d8c3d047642..92d9dd8ccf11341cec78271ea1b6e7305467e850 100644
+--- a/Android/library/runtime/src/main/java/org/libsdl/app/SDLActivity.java
++++ b/Android/library/runtime/src/main/java/org/libsdl/app/SDLActivity.java
+@@ -1794,25 +1794,22 @@ public class SDLActivity extends Activity implements View.OnSystemUiVisibilityCh
+     /**
+      * This method is called by SDL using JNI.
+      */
++    // Enginehost: a link the game opens (SDL_OpenURL) is offered to the person by Enginehost, never
++    // opened here (Enginehost docs/SPEC.md, "Links a game opens"). This core runs its own Activity
++    // and has no EngineHost, so it reaches Enginehost's named bridge, dev.enginehost.ActivityLinks,
++    // by reflection (owner, 2026-10-24). -1 when that bridge is missing: nothing opens.
+     public static int openURL(String url)
+     {
++        if (mSingleton == null || url == null) return -1;
+         try {
+-            Intent i = new Intent(Intent.ACTION_VIEW);
+-            i.setData(Uri.parse(url));
+-
+-            int flags = Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_MULTIPLE_TASK;
+-            if (Build.VERSION.SDK_INT >= 21 /* Android 5.0 (LOLLIPOP) */) {
+-                flags |= Intent.FLAG_ACTIVITY_NEW_DOCUMENT;
+-            } else {
+-                flags |= Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET;
+-            }
+-            i.addFlags(flags);
+-
+-            mSingleton.startActivity(i);
++            Class<?> links = Class.forName("dev.enginehost.ActivityLinks");
++            Object taken = links.getMethod("offer", android.app.Activity.class, String.class)
++                .invoke(null, mSingleton, url);
++            return Boolean.TRUE.equals(taken) ? 0 : -1;
+         } catch (Exception ex) {
++            Log.w(TAG, "The link was not offered: " + ex);
+             return -1;
+         }
+-        return 0;
+     }
+ 
+     /**

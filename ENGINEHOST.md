@@ -48,3 +48,11 @@ touch-to-mouse emulation.
 
 Upstream: https://github.com/adventuregamestudio/ags.
 Enginehost: https://github.com/Droidtop/enginehost.
+
+## Links the game opens are offered by Enginehost (2026-10-24)
+
+`SDLActivity.openURL`, where every `SDL_OpenURL` ends, hands the link to Enginehost's
+`dev.enginehost.ActivityLinks.offer` by reflection (this core runs its own Activity and has no
+`EngineHost`), so Enginehost offers it instead of the engine opening it (Enginehost docs/SPEC.md,
+"Links a game opens"). AGS games themselves cannot open links today: the `ShellExecute` plugin
+call is a stub. This closes SDL's own route. Line patch `0002-offer-links-through-enginehost.patch`.
