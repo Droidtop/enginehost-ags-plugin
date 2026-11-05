@@ -4,13 +4,19 @@ This repository packages the official Adventure Game Studio engine, through its
 own Android port, as an Enginehost engine bundle, so AGS games run in place
 from wherever they are, with no copy and no per-game APK.
 
-## Branch model
+## Branches
 
-`master` follows upstream AGS. `plugin-core` is the Enginehost changeset alone:
-the wrapper activity, the build workflow and the bundle metadata. Release lines
-(`plugin/3.6.3.15`) start at an upstream release tag, merge `plugin-core`, and
-carry the few seams the wrapper needs in the engine's own files (below). Every
-push to a line builds, signs and publishes the bundle on the unstable channel;
+A core has only these branches (Droidtop/tracker#324, the owner, 2026-11-05):
+
+- `upstream-sync` follows upstream AGS (`adventuregamestudio/ags`). It is updated from
+  upstream's `master` by hand (there is no sync workflow); nothing of ours is developed there.
+- `plugin-core`, the default branch, is the Enginehost recipe: the wrapper, the build workflows,
+  the bundle metadata, the patch series and the line pins. Recipe changes land here first,
+  through `ci/` branches.
+- `plugin/<line>` is upstream at the commit `enginehost/lines/<line>/line.json` pins, composed
+  with `plugin-core` by the plugin-line tool. Nothing on it is written by hand.
+
+Every push to a line builds, signs and publishes the bundle on the unstable channel;
 promotion to testing or stable is a manual dispatch.
 
 ## What the wrapper does
